@@ -1,0 +1,3 @@
+qwen-finetuned-q8.gguf
+merged_qwen_model
+final_model2/adapter_model.safetensors

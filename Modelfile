@@ -1,0 +1,23 @@
+FROM ./qwen-finetuned-q8.gguf
+
+TEMPLATE """<|im_start|>user
+{{ .Prompt }}<|im_end|>
+<|im_start|>assistant
+"""
+
+PARAMETER temperature 0.5
+PARAMETER top_p 0.9
+PARAMETER repeat_penalty 1.2
+PARAMETER num_predict 512
+# PARAMETER num_ctx 2048
+
+# The nuclear option - stop at EVERYTHING
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|im_start|>"
+PARAMETER stop "<|endoftext|>"
+PARAMETER stop "assistant"
+PARAMETER stop "\nassistant"
+PARAMETER stop "<|im_start|>assistant"
+PARAMETER stop "assistantassistant"
+PARAMETER stop "}\n<|im_end|>"
+PARAMETER stop "\n<|im_start|>user"
